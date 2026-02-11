@@ -118,18 +118,27 @@
     to { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-/* === إصلاح الموبايل: جعل النافذة متجاوبة وتظهر في المنتصف === */
+/* الجزء الجديد لملء الشاشة بالكامل (Full Screen) على الموبايل */
 @media (max-width: 600px) {
     .gpt-chat-container {
-        width: 95% !important;
-        left: 2.5% !important;
-        right: 2.5% !important;
-        bottom: 20px !important;
-        height: 85vh !important;
-        top: auto !important;
-        border-radius: 20px;
+        width: 100% !important;     /* ملء العرض بالكامل */
+        height: 100% !important;    /* ملء الارتفاع بالكامل */
+        height: 100dvh !important;  /* استخدام الارتفاع الديناميكي لتجنب مشاكل شريط أدوات المتصفح */
+        left: 0 !important;         /* الالتصاق بالحافة اليسرى */
+        right: 0 !important;        /* الالتصاق بالحافة اليمنى */
+        bottom: 0 !important;       /* الالتصاق بالحافة السفلية */
+        top: 0 !important;          /* الالتصاق بالحافة العلوية */
+        border-radius: 0 !important; /* إلغاء انحناء الحواف ليبدو كتطبيق أصيل */
         max-width: 100% !important;
+        z-index: 2147483647 !important; /* ضمان الظهور فوق أي عنصر آخر */
     }
+
+    /* تعديل إضافي لضمان انسيابية الرسائل داخل الشاشة الكاملة */
+    .gpt-messages {
+        flex: 1;
+        max-height: none !important; 
+    }
+}
     
     /* تقليل حجم الهيدر في الموبايل */
     .gpt-header {
@@ -1124,3 +1133,4 @@
     50% { height: 25px; }
 
 }
+
