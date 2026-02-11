@@ -175,38 +175,53 @@
 }
 
 /* الكود الجديد: ملء الشاشة بالكامل 100% واستغلال المساحة في وضع الدوران */
+/* الكود الجديد: السيطرة الكاملة على الأبعاد في وضع الدوران */
 @media (max-height: 500px) and (orientation: landscape) {
     .gpt-chat-container {
-        width: 100% !important;     /* ملء العرض بالكامل */
-        height: 100% !important;    /* ملء الارتفاع بالكامل */
-        height: 100dvh !important;  /* الارتفاع الديناميكي لتجنب مشاكل المتصفح */
-        top: 0 !important;          /* الالتصاق التام بالأعلى */
-        bottom: 0 !important;       /* الالتصاق التام بالأسفل */
-        left: 0 !important;         /* الالتصاق التام باليسار */
-        right: 0 !important;        /* الالتصاق التام باليمين */
-        border-radius: 0 !important; /* إلغاء الانحناءات */
+        /* 1. كسر قيود الارتفاع الأدنى (أهم خطوة جراحية) */
+        min-height: 0 !important; 
+        max-height: 100dvh !important;
+        height: 100dvh !important;
+        
+        /* 2. التثبيت في الحواف الأربعة (Full Screen) */
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        
+        /* 3. تنظيف الواجهة */
+        border-radius: 0 !important;
+        margin: 0 !important;
+        transform: none !important;
     }
     
-    /* تقليل ارتفاع الهيدر لاستغلال المساحة الرأسية الضيقة في وضع الدوران */
+    /* 4. ضغط الهيدر لترك مساحة للرسائل */
     .gpt-header {
-        padding: 5px 15px !important;
-        min-height: 40px !important;
+        padding: 4px 15px !important;
+        min-height: 35px !important;
+        height: 35px !important;
     }
     
     .gpt-title {
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
     }
 
-    /* توسيع منطقة الرسائل لتأخذ أقصى مساحة ممكنة */
+    /* 5. موازنة منطقة الرسائل */
     .gpt-messages {
         flex: 1;
-        padding: 10px !important;
-        max-height: none !important; /* إلغاء الحسابات القديمة */
+        padding: 8px !important;
+        gap: 8px !important;
     }
 
-    /* تصغير منطقة الإدخال قليلاً لتوفير مساحة */
+    /* 6. ضغط منطقة الإدخال */
     .gpt-input-area {
         padding: 5px 10px !important;
+    }
+    
+    .gpt-input {
+        padding: 5px 10px !important;
+        font-size: 0.85rem !important;
     }
 }
 
@@ -1152,5 +1167,6 @@
     50% { height: 25px; }
 
 }
+
 
 
