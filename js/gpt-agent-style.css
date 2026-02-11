@@ -174,20 +174,39 @@
     }
 }
 
-/* === إصلاح وضع الدوران (Landscape) === */
+/* الكود الجديد: ملء الشاشة بالكامل 100% واستغلال المساحة في وضع الدوران */
 @media (max-height: 500px) and (orientation: landscape) {
     .gpt-chat-container {
-        height: 90vh !important;
-        bottom: 10px !important;
-        border-radius: 15px !important;
+        width: 100% !important;     /* ملء العرض بالكامل */
+        height: 100% !important;    /* ملء الارتفاع بالكامل */
+        height: 100dvh !important;  /* الارتفاع الديناميكي لتجنب مشاكل المتصفح */
+        top: 0 !important;          /* الالتصاق التام بالأعلى */
+        bottom: 0 !important;       /* الالتصاق التام بالأسفل */
+        left: 0 !important;         /* الالتصاق التام باليسار */
+        right: 0 !important;        /* الالتصاق التام باليمين */
+        border-radius: 0 !important; /* إلغاء الانحناءات */
     }
     
+    /* تقليل ارتفاع الهيدر لاستغلال المساحة الرأسية الضيقة في وضع الدوران */
     .gpt-header {
-        padding: 10px 14px !important;
+        padding: 5px 15px !important;
+        min-height: 40px !important;
     }
     
+    .gpt-title {
+        font-size: 0.85rem !important;
+    }
+
+    /* توسيع منطقة الرسائل لتأخذ أقصى مساحة ممكنة */
     .gpt-messages {
-        max-height: calc(100vh - 140px) !important;
+        flex: 1;
+        padding: 10px !important;
+        max-height: none !important; /* إلغاء الحسابات القديمة */
+    }
+
+    /* تصغير منطقة الإدخال قليلاً لتوفير مساحة */
+    .gpt-input-area {
+        padding: 5px 10px !important;
     }
 }
 
@@ -1133,4 +1152,5 @@
     50% { height: 25px; }
 
 }
+
 
