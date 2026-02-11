@@ -1035,18 +1035,32 @@
 
 /* تحسين المساحة على الموبايل */
 @media (max-width: 600px) {
+    /* تم إلغاء الوضع المطلق للسماعة لضمان عدم تداخلها مع النص */
     .gpt-input-wrapper .gpt-voice-controls {
-        left: 8px;
+        left: auto; 
+        position: relative; /* تغيير من absolute إلى relative لمنع حجز مساحة وهي مخفية */
+        transform: none;
+        order: 1; /* لضمان ظهورها أقصى اليسار في الموبيل */
     }
     
     .gpt-input-wrapper .voice-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 12px;
+        width: 30px; /* حجم متناسق للموبيل */
+        height: 30px;
+        font-size: 13px;
     }
     
     .gpt-input-wrapper {
-        padding: 6px 12px 6px 45px; /* ← تعديل للـ padding على الموبايل */
+        /* تم إرجاع الـ padding للوضع الطبيعي (12px) من جميع الجهات */
+        padding: 6px 12px; 
+        gap: 5px; /* إضافة مسافة بسيطة بين العناصر تظهر فقط عند التفعيل */
+    }
+    
+    .gpt-input {
+        order: 2; /* النص في المنتصف */
+    }
+    
+    .gpt-action-btn {
+        order: 3; /* زر المايك/الإرسال أقصى اليمين */
     }
 }
 
@@ -1108,4 +1122,5 @@
 @keyframes wave {
     0%, 100% { height: 10px; }
     50% { height: 25px; }
+
 }
